@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
+import { Wrapper } from './Wrapper';
+import { CardDescriptor } from './pages/CardDescriptor/CardDescriptor';
 
-function App() {
+const drawerWidth = 240;
+
+export function App() {
+  const [mobileOpen, setMobileOpen] = React.useState(true);
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+  const cprops = { drawerWidth, mobileOpen, handleDrawerToggle };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Wrapper {...cprops}/>}>
+          <Route path="page-card-descriptor" element={<CardDescriptor {...cprops}/>} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
