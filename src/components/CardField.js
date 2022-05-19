@@ -20,8 +20,10 @@ export function CardField (props) {
       imProps[key] = props[key];
     else tfProps[key] = props[key];
   }
+  const mask = "9999 - 9999 - 9999 - 9999";
+  // const mask = [/[0-9]{4}/, " - ", /[0-9]{4}/, " - ", /[0-9]{4}/, " - ", /[0-9]{7}/];
   return (
-  <InputMask mask="9999 - 9999 - 9999 - 9999" maskChar=" " {...imProps}>
+  <InputMask mask={mask} maskChar=" " {...imProps}>
     {() => <TextField {...tfProps}/>}
   </InputMask>);
 }
