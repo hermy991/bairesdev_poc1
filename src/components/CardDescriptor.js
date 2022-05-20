@@ -93,7 +93,7 @@ export function CardDescriptor() {
         </Typography>
       </Toolbar>
     </AppBar>
-    <Box component="main" sx={{ flexGrow: 1, p: 1, width: { sm: `auto` } }}>
+    <Box component="main" sx={{ flexGrow: 1, p: 1, width: { sm: `auto`, md: 500 } }}>
       <Toolbar />
       <Box
       component="form"
