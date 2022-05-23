@@ -23,13 +23,8 @@ import { CardField } from "./CardField";
 * 3530111333300000: jcb
 *******/
 
-function createData(name, display, value) {
-  return { name, display, value };
-}
 
-export function CardDescriptor() {
 
-  let [cardNumber, setCardNumber] = React.useState("");
   /*******************
   * Card Return
   * 
@@ -60,8 +55,19 @@ export function CardDescriptor() {
     "isValid": true
 }
   */
+
+function createData(name, display, value) {
+  return { name, display, value };
+}
+
+export function CardDescriptor() {
+  let [cardNumber, setCardNumber] = React.useState("");
+  let [showCardNumber, setShowCardNumber] = React.useState(false);
+
+  const showCardNumberHandler = () => {
+    setShowCardNumber(!showCardNumber);
+  }
   const descriptor = valid.number(cardNumber);
-  console.log({descriptor});
   let niceType;
   let type;
   let codeName;
@@ -75,6 +81,7 @@ export function CardDescriptor() {
   }
   const rows = [
     createData('niceType', 'Display', niceType),
+    createData('cardNumber', 'Card Number', cardNumber),
     createData('type', 'Type', type),
     createData('codeName', 'Code', codeName),
     createData('codeSize', 'Code Size', codeSize),
@@ -109,7 +116,10 @@ export function CardDescriptor() {
             label="Card Number"
             size="small" 
             value={cardNumber}
-            onChange={(e) => setCardNumber(e.target.value)} />
+            showCardNumber={showCardNumber}
+            showCardNumberHandler={showCardNumberHandler}
+            onChange={(e) => setCardNumber(e.target.value)} 
+            />
 
           <Typography variant="h6" gutterBottom component="div"> Card Info </Typography>
           <TableContainer component={Paper}>
